@@ -1,11 +1,12 @@
 class Customer
 
-  attr_reader :name, :wallet
+  attr_reader :name, :wallet, :drunkeness
 
   def initialize(name, wallet, age)
     @name = name
     @wallet = wallet
     @age = age
+    @drunkeness = 0.0
   end
 
   def enough_money(drink)
@@ -20,6 +21,10 @@ class Customer
 
   def check_ID
     @age >= 18
+  end
+
+  def increase_drunkeness(drink)
+    @drunkeness += drink.alcohol_level
   end
 
 end

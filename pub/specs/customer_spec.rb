@@ -10,7 +10,7 @@ class CustomerSpec < Minitest::Test
     def setup
       @customer = Customer.new("Bob", 20.00, 12)
       @pub = Pub.new("The Old Man Arms")
-      @drink1 = Drink.new("Lager", 2.95)
+      @drink1 = Drink.new("Lager", 2.95, 2.5)
     end
 
     def test_name
@@ -30,6 +30,8 @@ class CustomerSpec < Minitest::Test
       assert_equal(17.05, @customer.buy_drink(@drink1))
     end
 
-
+    def test_increase_drunkeness
+      assert_equal(2.5, @customer.increase_drunkeness(@drink1))
+    end
 
 end

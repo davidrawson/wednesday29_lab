@@ -8,9 +8,9 @@ class PubSpec < Minitest::Test
 
   def setup
     @pub = Pub.new("The Old Man Arms")
-    @drink1 = Drink.new("Lager", 2.95)
-    @drink2 = Drink.new("Stout", 3.50)
-    @drink3 = Drink.new("IPA", 4.00)
+    @drink1 = Drink.new("Lager", 2.95, 2.5)
+    @drink2 = Drink.new("Stout", 3.50, 3.0)
+    @drink3 = Drink.new("IPA", 4.00, 2.8)
     # @drinks_in_pub = [@drink1, @drink2, @drink3]
     @customer = Customer.new("Bob", 20.00, 12)
     @customer2 = Customer.new("Jim", 15.00, 78)
@@ -53,4 +53,5 @@ class PubSpec < Minitest::Test
     assert_equal(true, @customer2.check_ID)
   end
 
+  
 end
