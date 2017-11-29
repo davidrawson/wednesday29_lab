@@ -4,19 +4,28 @@ class Customer
 
   def initialize(name, wallet, age)
     @name = name
-    @wallet = wallet
+    @wallet = wallet.round(2)
     @age = age
     @drunkeness = 0.0
   end
 
   def enough_money(drink)
-    drink.price_of_drink(drink) <= wallet
+    drink.price_of_drink(drink) <= @wallet.round(2)
   end
 
   def buy_drink(drink)
-    if enough_money(drink) == true
-      @wallet -= drink.price_of_drink(drink)
-    end
+    # p enough_money(drink)
+    # p check_ID
+
+    @wallet.round(2)
+    p @wallet.round(2)
+    p @drunkeness
+    p too_drunk_to_buy
+    return if too_drunk_to_buy == true
+    return if check_ID == false
+    return if enough_money(drink) == false
+    @wallet -= drink.price_of_drink(drink)
+    increase_drunkeness(drink)
   end
 
   def check_ID
@@ -26,5 +35,14 @@ class Customer
   def increase_drunkeness(drink)
     @drunkeness += drink.alcohol_level
   end
+
+  def too_drunk_to_buy
+    if @drunkeness > 9.5
+      return true
+    else
+      return false
+    end
+  end
+
 
 end

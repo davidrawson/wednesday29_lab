@@ -9,6 +9,8 @@ class CustomerSpec < Minitest::Test
 
     def setup
       @customer = Customer.new("Bob", 20.00, 12)
+      @customer2 = Customer.new("Bob", 20.00, 18)
+      @customer = Customer.new("Bob", 20.00, 12)
       @pub = Pub.new("The Old Man Arms")
       @drink1 = Drink.new("Lager", 2.95, 2.5)
     end
@@ -27,11 +29,20 @@ class CustomerSpec < Minitest::Test
     end
 
     def test_buy_drink
-      assert_equal(17.05, @customer.buy_drink(@drink1))
+      @customer.buy_drink(@drink1)
+      assert_equal(20.0, @customer.wallet())
+      assert_equal(0.0, @customer.drunkeness())
     end
 
     def test_increase_drunkeness
       assert_equal(2.5, @customer.increase_drunkeness(@drink1))
     end
 
+    def test_too_drunk_to_buy
+      @customer2.buy_drink(@drink1)
+      @customer2.buy_drink(@drink1)
+      @customer2.buy_drink(@drink1)
+      @customer2.buy_drink(@drink1)
+      assert_equal(8.20, @customer2.wallet.round(2))
+    end
 end
